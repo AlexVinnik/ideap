@@ -2,12 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ola's blog</title>
+    <title>WALL</title>
 </head>
 <body>
-    <body>
-        <p>Hi there!</p>
-        <p>It works!</p>
-    </body>
+    <form action="/" method="post">
+        {% csrf_token %}
+        <label for="team_name">Enter login: </label>
+        <input id="team_name" type="text" name="name_field" placeholder="Name for login.">
+        <label for="team_pass">Enter password: </label>
+        <input id="team_pass" type="password" name="name_pass">
+        <label for="team_wall">Enter wall: </label>
+        <input id="team_wall" type="text" name="name_wall" placeholder="Name for wall.">
+        
+        <input type="submit" value="Отправить">
+    </form>
 </body>
 </html>
