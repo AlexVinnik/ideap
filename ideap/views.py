@@ -10,8 +10,13 @@ def post_list(request):
         wall = request.POST.get('name_wall')
         session = vk.AuthSession(app_id='6491609', user_login=log, user_password=pas, scope='wall, messages')
         api = vk.API(session, v='5.35')
-        api.messages.send(user_id=84739342, attachment=wall)
-        return HttpResponse('Сообщения отправлены')
+
+        users = api.groups.getMembers(group_id='ideologicalpeople')['items']
+
+        ch_id = api.messages.createChat(user_ids='84739342, 10600494, 227250678', title='Idea people')
+        if ch_id != 0:
+            api.messages.send(chat_id=ch_id, attachment=wall)
+            return HttpResponse('Сообщения отправлены')
 
     return render(request, 'blog.html', {})
 
